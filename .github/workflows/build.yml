@@ -11,7 +11,10 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - run: gradle wrapper --gradle-version 8.7 --distribution-type bin
+      - name: generate gradle wrapper (in empty dir to avoid project configuration with system gradle)
+        run: |
+          mkdir -p "$RUNNER_TEMP/w" && cd "$RUNNER_TEMP/w" && gradle wrapper --gradle-version 8.7 --distribution-type bin
+          cp -r "$RUNNER_TEMP/w/gradlew" "$RUNNER_TEMP/w/gradlew.bat" "$RUNNER_TEMP/w/gradle" "$GITHUB_WORKSPACE/"
       - run: ./gradlew assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
         with:
