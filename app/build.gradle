@@ -1,0 +1,12 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.hasabtek.bubble'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.hasabtek.bubble'
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName '1.0'
+    }
+}
